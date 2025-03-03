@@ -1,0 +1,3 @@
+bucket = "foxon-consulting-tf-states-npe"
+key= "mane/vpc.tfstate"
+region = "eu-west-1"

@@ -1,0 +1,3 @@
+bucket = "foxon-consulting-tf-states-npe"
+key= "mane/ecs-n8n/npe/dev/security-groups.tfstate"
+region = "eu-west-1"
