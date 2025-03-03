@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  devops-toolkit:
+    image: foxonconsulting/devops-toolkit:1.0.1
+    volumes:
+      - //var/run/docker.sock:/var/run/docker.sock
+      - ./:/ecs-n8n
+      - ./key:/home/user/key
+      - ~/.aws:/root/.aws
+    container_name: "ecs-n8n_cn"
+    restart: unless-stopped
+    command: bash -c "while true; do sleep 1; done"

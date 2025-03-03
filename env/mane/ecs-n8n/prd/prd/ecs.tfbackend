@@ -1,0 +1,3 @@
+bucket = "foxon-consulting-tf-states-prd"
+key= "mane/ecs-n8n/prd/prd/ecs.tfstate"
+region = "eu-west-1"
