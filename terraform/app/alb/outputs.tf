@@ -24,8 +24,13 @@ output "target_group_name" {
 }
 
 output "alb_security_group_id" {
-  description = "ID of the ALB security group"
-  value       = local.alb_sg_id
+  description = "ID du groupe de sécurité de l'ALB"
+  value       = aws_security_group.alb.id
+}
+
+output "alb_security_group_name" {
+  description = "Nom du groupe de sécurité de l'ALB"
+  value       = aws_security_group.alb.name
 }
 
 output "http_listener_arn" {

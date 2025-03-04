@@ -47,6 +47,11 @@ variable "subnet_ids" {
   type        = list(string)
 }
 
+variable "ecs_tasks_sg_id" {
+  description = "Security group ID of the ECS tasks"
+  type        = string
+}
+
 variable "target_group_arn" {
   description = "ARN of the target group for the load balancer"
   type        = string
@@ -67,10 +72,4 @@ variable "tags" {
   description = "Tags to apply to all resources"
   type        = map(string)
   default     = {}
-}
-
-
-variable "ecr_image_arn" {
-  description = "ARN of the ECR image"
-  type        = string
 }

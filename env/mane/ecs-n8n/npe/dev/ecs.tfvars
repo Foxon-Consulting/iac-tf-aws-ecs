@@ -5,8 +5,9 @@ environment = "dev"
 
 # ECS Configuration
 service_name = "n8n-service"
-container_image = "039130791457.dkr.ecr.eu-west-1.amazonaws.com/n8n"
-ecr_image_arn = "arn:aws:ecr:eu-west-1:039130791457:repository/n8n"
+# container_image = "039130791457.dkr.ecr.eu-west-1.amazonaws.com/n8n"
+container_image = "n8nio/n8n"
+# ecr_image_arn = "arn:aws:ecr:eu-west-1:039130791457:repository/n8n"
 container_port = 5678
 cpu = 256
 memory = 512
@@ -38,7 +39,12 @@ environment_variables = [
   {
     name = "N8N_BASIC_AUTH_PASSWORD"
     value = "changeme"
+  },
+  {
+    name = "N8N_SECURE_COOKIE"
+    value = "false"
   }
+
 ]
 
 # Add layer variables configuration

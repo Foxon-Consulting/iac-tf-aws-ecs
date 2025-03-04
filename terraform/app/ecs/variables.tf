@@ -48,11 +48,6 @@ variable "container_image" {
   type        = string
 }
 
-variable "ecr_image_arn" {
-  description = "ARN of the ECR image"
-  type        = string
-}
-
 variable "container_port" {
   description = "Port exposed by the container"
   type        = number

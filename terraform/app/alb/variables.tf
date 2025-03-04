@@ -33,7 +33,7 @@ variable "tags" {
 }
 
 
-
+### ALB Configuration
 
 variable "target_group_port" {
   description = "Port for the target group"

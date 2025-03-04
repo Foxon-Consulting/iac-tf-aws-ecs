@@ -65,7 +65,7 @@ resource "aws_ecs_service" "main" {
 
   network_configuration {
     subnets          = var.subnet_ids
-    security_groups  = [aws_security_group.ecs_tasks.id]
+    security_groups  = [var.ecs_tasks_sg_id]
     assign_public_ip = var.assign_public_ip
   }
 
@@ -80,28 +80,6 @@ resource "aws_ecs_service" "main" {
   tags = var.tags
 }
 
-resource "aws_security_group" "ecs_tasks" {
-  name        = "${var.service_name}-ecs-tasks"
-  description = "Security group for ECS tasks"
-  vpc_id      = var.vpc_id
-
-  ingress {
-    from_port       = var.container_port
-    to_port         = var.container_port
-    protocol        = "tcp"
-    security_groups = [var.alb_security_group_id]
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  tags = var.tags
-}
-
 # CloudWatch Log Group
 resource "aws_cloudwatch_log_group" "ecs" {
   name              = "/ecs/${var.service_name}"
@@ -112,26 +90,3 @@ resource "aws_cloudwatch_log_group" "ecs" {
 
 # Data source for current region
 data "aws_region" "current" {}
-
-# ECR Repository Policy
-resource "aws_ecr_repository_policy" "main" {
-  repository = "n8n"
-
-  policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Sid    = "AllowECSTaskExecutionRole"
-        Effect = "Allow"
-        Principal = {
-          AWS =
-        }
-        Action = [
-          "ecr:BatchGetImage",
-          "ecr:GetDownloadUrlForLayer",
-          "ecr:BatchCheckLayerAvailability"
-        ]
-      }
-    ]
-  })
-}

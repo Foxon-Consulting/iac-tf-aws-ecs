@@ -10,6 +10,8 @@ locals {
       Name        = local.full_name
       client      = var.client,
       env_type    = var.env_type,
+      terraform   = "true",
+      module      = "vpc"
     }
   )
 }
